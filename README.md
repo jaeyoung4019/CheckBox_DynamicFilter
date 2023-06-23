@@ -172,7 +172,7 @@ export default DynamicFilter;
 # 렌더링 시에 사용하기 위한 클로져
 useMemo를 사용해서 처리하면 됩니다.
 ```ts
-    const sliceClosure = useMemo( () => (function () {
+    const sliceClosure : () => (number) = useMemo( () => (function () {
         let plus = 5
         return function () {
             plus += 5;
