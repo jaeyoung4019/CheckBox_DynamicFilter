@@ -167,3 +167,31 @@ export default DynamicFilter;
                 })
   ```
   filter 처리를 하는데 필터에 담긴 배열의 길이가 0이면 전체검색인 상태임으로 value 를 그대로 리턴해주도록 합니다. 이 외의 상황일 경우 선택된 키값과 일치한 list 만 내보낼 수 있도록 includes 로 filter 처리를 합니다.
+
+
+# 렌더링 시에 사용하기 위한 클로져
+useMemo를 사용해서 처리하면 됩니다.
+```ts
+    const sliceClosure = useMemo( () => (function () {
+        let plus = 5
+        return function () {
+            plus += 5;
+            if (testArray1.length - 4 <=  plus) {
+                plus = testArray1.length;
+                return plus
+            } else {
+                return plus;
+            }
+        }
+    }()) , [])
+```
+
+버튼 클릭 시
+```ts
+
+    const filterLengthClosure = () => {
+        const countClosure = sliceClosure();
+        setArray( testArray1.slice(0 ,countClosure));
+    }
+
+```
