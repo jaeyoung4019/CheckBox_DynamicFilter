@@ -47,7 +47,7 @@ const DynamicFilter = ({ schVariable, selectMenu }: schVariableInterface) => {
 
     const [count , setCount] = useState<number>(2);
 
-    const sliceClosure = useMemo( () => (function () {
+    const sliceClosure : () => (number) = useMemo( () => (function () {
         let plus = 5
         return function () {
             plus += 5;
@@ -72,7 +72,7 @@ const DynamicFilter = ({ schVariable, selectMenu }: schVariableInterface) => {
 
     const filterLengthClosure = () => {
         const countClosure = sliceClosure();
-        setArray( testArray1.slice(0 ,countClosure));
+        setArray(testArray1.slice(0 ,countClosure));
     }
 
     // useEffect(() => {
